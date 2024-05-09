@@ -7,141 +7,141 @@
 
 module ALMAS_Management {
 
- typedef long long ALMAS_RequestIdType;
+ typedef long long RequestIdType;
 
- typedef sequence<ALMAS_DataModel::ALMAS_Alert> ALMAS_AlertSet;
+ typedef sequence<ALMAS_DataModel::Alert> AlertSet;
 
- struct ALMAS_Response {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_CallStatus error_code; };
+ struct Response {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::CallStatus error_code; };
 
- // Need a singleton topic for ALMAS_Manager since it has attributes
- struct ALMAS_Manager {
+ // Need a singleton topic for Manager since it has attributes
+ struct Manager {
    string SystemID;};
 
- struct ALMAS_RaiseAlertFromTemplate {
-   @key ALMAS_RequestIdType request_id;
+ struct RaiseAlertFromTemplate {
+   @key RequestIdType request_id;
    string ProducerID;
-   ALMAS_DataModel::ALMAS_TemplateIDType TemplateID; };
+   ALMAS_DataModel::TemplateIDType TemplateID; };
 
-struct ALMAS_RegisterReceiver {
-   @key ALMAS_RequestIdType request_id;
+struct RegisterReceiver {
+   @key RequestIdType request_id;
    string ReceiverID;
    string RKType; };
 
- struct ALMAS_UnregisterReceiver {
-   @key ALMAS_RequestIdType request_id;
+ struct UnregisterReceiver {
+   @key RequestIdType request_id;
    string ReceiverID; };
 
- struct ALMAS_RaiseAlertFromOverrides  {
-   @key ALMAS_RequestIdType request_id;
+ struct RaiseAlertFromOverrides  {
+   @key RequestIdType request_id;
    string ProducerID;
-   ALMAS_DataModel::ALMAS_TemplateIDType TemplateID;
-   @optional ALMAS_DataModel::ALMAS_CategoryType Category;
+   ALMAS_DataModel::TemplateIDType TemplateID;
+   @optional ALMAS_DataModel::CategoryType Category;
    @optional short Priority;
-   @optional ALMAS_DataModel::ALMAS_StatusType Status;
-   @optional ALMAS_DataModel::ALMAS_ScopeType Scope;
-   @optional ALMAS_DataModel::ALMAS_TimeoutType Timeout;
+   @optional ALMAS_DataModel::StatusType Status;
+   @optional ALMAS_DataModel::ScopeType Scope;
+   @optional ALMAS_DataModel::TimeoutType Timeout;
    @optional boolean ConfirmationRequired;
    @optional string SecondaryGrouping;
    @optional boolean Persistent;
    @optional boolean ReliablyDistributed;
-   @optional ALMAS_DataModel::ALMAS_TimeoutActionType TimeoutAction;
-   @optional ALMAS_DataModel::ALMAS_AckModelType AcknowledgementModel;
-   @optional ALMAS_DataModel::ALMAS_StaticMessageTypeSet StaticMessages;
-   @optional ALMAS_DataModel::ALMAS_DynamicMessageDataTypeSet DynamicMessages; };
+   @optional ALMAS_DataModel::TimeoutActionType TimeoutAction;
+   @optional ALMAS_DataModel::AckModelType AcknowledgementModel;
+   @optional ALMAS_DataModel::StaticMessageTypeSet StaticMessages;
+   @optional ALMAS_DataModel::DynamicMessageDataTypeSet DynamicMessages; };
 
- struct ALMAS_RaiseAlertWithDynamicData {
-   @key ALMAS_RequestIdType request_id;
+ struct RaiseAlertWithDynamicData {
+   @key RequestIdType request_id;
    string ProducerID;
-   ALMAS_DataModel::ALMAS_TemplateIDType TemplateID;
-   ALMAS_DataModel::ALMAS_DynamicMessageDataType DynamicMessageData; };
+   ALMAS_DataModel::TemplateIDType TemplateID;
+   ALMAS_DataModel::DynamicMessageDataType DynamicMessageData; };
 
- struct ALMAS_RaiseAlertFromData  {
-   @key ALMAS_RequestIdType request_id;
+ struct RaiseAlertFromData  {
+   @key RequestIdType request_id;
    string ProducerID;
-   ALMAS_DataModel::ALMAS_AlertTemplateType AlertInfo; };
+   ALMAS_DataModel::AlertTemplateType AlertInfo; };
 
- struct ALMAS_CreatedAlert {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID; };
+ struct CreatedAlert {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::AlertIDType AlertID; };
 
- struct ALMAS_UpdateAlertPriority {
-   @key ALMAS_RequestIdType request_id;
+ struct UpdateAlertPriority {
+   @key RequestIdType request_id;
    string ProducerID;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID;
+   ALMAS_DataModel::AlertIDType AlertID;
    short Priority; };
 
- struct ALMAS_CancelAlert  {
-   @key ALMAS_RequestIdType request_id;
+ struct CancelAlert  {
+   @key RequestIdType request_id;
    string CancellerID;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID;
+   ALMAS_DataModel::AlertIDType AlertID;
    string CancellationReason; };
 
- struct ALMAS_AcknowledgeAlert {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID;
+ struct AcknowledgeAlert {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::AlertIDType AlertID;
    string ReceiverID;};
 
- struct ALMAS_HandleAlert {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID;
+ struct HandleAlert {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::AlertIDType AlertID;
    string ReceiverID;};
 
- struct ALMAS_ConfirmReceipt {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID;
+ struct ConfirmReceipt {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::AlertIDType AlertID;
    string ReceiverID;};
 
- struct ALMAS_SetLanguage {
-   @key ALMAS_RequestIdType request_id;
+ struct SetLanguage {
+   @key RequestIdType request_id;
    string ReceiverID;
    string Language;};
 
- struct ALMAS_GetFilledMessageText {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID;
+ struct GetFilledMessageText {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::AlertIDType AlertID;
    string ReceiverID;};
 
- struct ALMAS_FilledMessageText {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_StringSet Messages; };
+ struct FilledMessageText {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::StringSet Messages; };
 
- struct ALMAS_LoadReceiverHierarchy {
-   @key ALMAS_RequestIdType request_id;
+ struct LoadReceiverHierarchy {
+   @key RequestIdType request_id;
    string Filename ;};
 
- struct ALMAS_LoadTemplateSet {
-   @key ALMAS_RequestIdType request_id;
+ struct LoadTemplateSet {
+   @key RequestIdType request_id;
    string Filename; };
 
- struct ALMAS_LoadConfiguration {
-   @key ALMAS_RequestIdType request_id;
+ struct LoadConfiguration {
+   @key RequestIdType request_id;
    string Filename; };
 
- struct ALMAS_UpdateDynamicMessageData {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_AlertIDType AlertID;
+ struct UpdateDynamicMessageData {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::AlertIDType AlertID;
    string DataValue;
-   ALMAS_DataModel::ALMAS_DynamicMessageDataType OldData; };
+   ALMAS_DataModel::DynamicMessageDataType OldData; };
 
- struct ALMAS_SetAlertInhibited {
-   @key ALMAS_RequestIdType request_id;
-   ALMAS_DataModel::ALMAS_TemplateIDType TemplateID;
+ struct SetAlertInhibited {
+   @key RequestIdType request_id;
+   ALMAS_DataModel::TemplateIDType TemplateID;
    boolean Inhibition; };
 
- struct ALMAS_AttachCategorisationRule {
-   @key ALMAS_RequestIdType request_id;
+ struct AttachCategorisationRule {
+   @key RequestIdType request_id;
    long RuleID;
-   ALMAS_DataModel::ALMAS_TemplateIDType TemplateID; };
+   ALMAS_DataModel::TemplateIDType TemplateID; };
 
- struct ALMAS_DetachCategorisationRule {
-   @key ALMAS_RequestIdType request_id;
+ struct DetachCategorisationRule {
+   @key RequestIdType request_id;
    long RuleID;
-   ALMAS_DataModel::ALMAS_TemplateIDType TemplateID; };
+   ALMAS_DataModel::TemplateIDType TemplateID; };
 
- struct ALMAS_RemoveAlertsWithDynamicMessageData  {
-   @key ALMAS_RequestIdType request_id;
+ struct RemoveAlertsWithDynamicMessageData  {
+   @key RequestIdType request_id;
    string CancellerID;
    string DataType;
    string DataValue; };

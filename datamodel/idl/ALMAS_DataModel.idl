@@ -7,25 +7,25 @@
 
 module ALMAS_DataModel {
 
- typedef long ALMAS_AlertIDType;
+ typedef long AlertIDType;
 
- typedef long ALMAS_TemplateIDType;
+ typedef long TemplateIDType;
 
- typedef long ALMAS_TimeoutType;
+ typedef long TimeoutType;
 
- typedef DDS::Time_t ALMAS_DateTimeType;
+ typedef DDS::Time_t DateTimeType;
 
- typedef sequence<octet> ALMAS_ByteSequence;
+ typedef sequence<octet> ByteSequence;
 
- typedef sequence<string> ALMAS_StringSet;
+ typedef sequence<string> StringSet;
 
- enum ALMAS_CategoryType {
+ enum CategoryType {
    Action,
    Warning,
    Information,
    Situation};
 
- enum ALMAS_StateType {
+ enum StateType {
    Raised,
    Routed,
    Received,
@@ -34,104 +34,104 @@ module ALMAS_DataModel {
    Cancelled,
    Timed_Out};
 
- enum ALMAS_StatusType {
+ enum StatusType {
    Actual,
    Exercise,
    System,
    Test};
 
- enum ALMAS_ScopeType {
+ enum ScopeType {
    PublicScope,
    RestrictedScope,
    PrivateScope};
 
- enum ALMAS_TimeoutActionType {
+ enum TimeoutActionType {
    CancelOnly,
    NotifyOnly,
    CancelWithNotify};
 
- enum ALMAS_AckModelType {
+ enum AckModelType {
    AckByNone,
    AckByAnyone,
    AckByAll};
 
- struct ALMAS_CallStatus {
+ struct CallStatus {
    boolean Success;
    short Reason;
    string Description; };
 
- struct ALMAS_ValidAlertResponseType {
-   ALMAS_StringSet AlternativeAction;
+ struct ValidAlertResponseType {
+   StringSet AlternativeAction;
    short ActioneePriority; };
 
- struct ALMAS_ReceiverKindType {
+ struct ReceiverKindType {
    string RKType;
    string RKParentType;
-   ALMAS_ValidAlertResponseType ValidResponse; };
- typedef sequence<ALMAS_ReceiverKindType> ALMAS_ReceiverKindTypeSet;
+   ValidAlertResponseType ValidResponse; };
+ typedef sequence<ReceiverKindType> ReceiverKindTypeSet;
 
- struct ALMAS_DynamicMessageDataType {
+ struct DynamicMessageDataType {
    string DataType;
    string DataTag;
    string DataValue; };
- typedef sequence<ALMAS_DynamicMessageDataType> ALMAS_DynamicMessageDataTypeSet;
+ typedef sequence<DynamicMessageDataType> DynamicMessageDataTypeSet;
 
- struct ALMAS_StaticMessageType {
+ struct StaticMessageType {
    string MessageText;
    string MessageLanguage; };
- typedef sequence<ALMAS_StaticMessageType> ALMAS_StaticMessageTypeSet;
+ typedef sequence<StaticMessageType> StaticMessageTypeSet;
 
- struct ALMAS_AlertDataExtraAttributesType {
+ struct AlertDataExtraAttributesType {
    string Name;
    short TypeOfByteData;
    string Description;
-   ALMAS_ByteSequence Value; };
- typedef sequence<ALMAS_AlertDataExtraAttributesType> ALMAS_AlertDataExtraAttributesTypeSet;
+   ByteSequence Value; };
+ typedef sequence<AlertDataExtraAttributesType> AlertDataExtraAttributesTypeSet;
 
- struct ALMAS_AlertDataType {
-   @key ALMAS_TemplateIDType TemplateID;
-   ALMAS_CategoryType Category;
+ struct AlertDataType {
+   @key TemplateIDType TemplateID;
+   CategoryType Category;
    short Priority;
-   ALMAS_StatusType Status;
-   ALMAS_ScopeType Scope;
-   ALMAS_TimeoutType Timeout;
+   StatusType Status;
+   ScopeType Scope;
+   TimeoutType Timeout;
    boolean ConfirmationRequired;
    string SecondaryGrouping;
    boolean Persistent;
    boolean ReliablyDistributed;
-   ALMAS_TimeoutActionType TimeoutAction;
-   ALMAS_AckModelType AcknowledgementModel;
-   ALMAS_StaticMessageTypeSet StaticMessages;
-   ALMAS_DynamicMessageDataTypeSet DynamicMessages;
-   ALMAS_AlertDataExtraAttributesTypeSet ExtraAttributes; };
+   TimeoutActionType TimeoutAction;
+   AckModelType AcknowledgementModel;
+   StaticMessageTypeSet StaticMessages;
+   DynamicMessageDataTypeSet DynamicMessages;
+   AlertDataExtraAttributesTypeSet ExtraAttributes; };
 
- struct ALMAS_AlertTemplateType {
+ struct AlertTemplateType {
    boolean Inhibited;
    boolean RaiseToAll;
-   @key ALMAS_AlertDataType AlertData;
-   ALMAS_ReceiverKindTypeSet ReceiverKinds; };
+   @key AlertDataType AlertData;
+   ReceiverKindTypeSet ReceiverKinds; };
 
- struct ALMAS_AlertReportType {
+ struct AlertReportType {
    boolean Acknowledged;
    boolean Routed;
    boolean Actioned;
    boolean ReceiverIsActionee;
-   ALMAS_StringSet AlternativeAction;
+   StringSet AlternativeAction;
    @key string ReceiverID;
-   @key ALMAS_AlertIDType AlertID; };
+   @key AlertIDType AlertID; };
 
- struct ALMAS_AvailableAlertReceiverType {
+ struct AvailableAlertReceiverType {
    string ReceiverID;
-   ALMAS_ReceiverKindType ReceiverKind; };
- typedef sequence<ALMAS_AvailableAlertReceiverType> ALMAS_AvailableAlertReceiverTypeSet;
+   ReceiverKindType ReceiverKind; };
+ typedef sequence<AvailableAlertReceiverType> AvailableAlertReceiverTypeSet;
 
- struct ALMAS_Alert {
-   @key ALMAS_AlertIDType AlertID;
-   ALMAS_DateTimeType RaisingTime;
-   ALMAS_StateType CurrentState;
+ struct Alert {
+   @key AlertIDType AlertID;
+   DateTimeType RaisingTime;
+   StateType CurrentState;
    string ProducerID;
-   ALMAS_AlertDataType AlertData;
-   ALMAS_AvailableAlertReceiverTypeSet Receivers; };
+   AlertDataType AlertData;
+   AvailableAlertReceiverTypeSet Receivers; };
 
 };
 

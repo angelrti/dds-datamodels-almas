@@ -41,6 +41,7 @@ This enhanced version contains several changes in the datamodel for the
 ALMAS version 1.3 beta 1:
 
  - Replaced the key definition with the IDL 4.2 `@key` annotation.
+ - Deleted `ALMAS_` from struct names since the module already contains it.
 
 ## Testing
 
